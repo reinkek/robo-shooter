@@ -1,0 +1,2 @@
+/usr/bin/ar cr ../lib/libOptiTrack.a  CMakeFiles/OptiTrack.dir/src/OptiTrack.o
+/usr/bin/ranlib ../lib/libOptiTrack.a

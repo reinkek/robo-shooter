@@ -1,0 +1,2 @@
+/home/newt/workspace/cs225a/OptiTrack/build/CMakeFiles/OptiTrack.dir
+/home/newt/workspace/cs225a/OptiTrack/build/CMakeFiles/exampleCode.dir

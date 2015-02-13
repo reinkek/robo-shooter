@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!DOCTYPE LOTUS SYSTEM "scl.dtd">
+
+<!-- Units are in Std International System -->
+<scl>
+    <robot name="iiwaBot"> 
+        <spec>iiwa</spec>
+        <gravity>0.000   0.000   -9.81</gravity> 
+        <file>/home/student/group4/cs225a/catkin_ws/src/IIWA/src/iiwa.xml</file>
+        <root_link>
+            <link_name>base</link_name>
+            <position_in_parent>0.0  0.0  0.0</position_in_parent> 
+            <orientation_in_parent>0.000000 0.000000 0.000000 1.000000</orientation_in_parent>
+            <graphics>
+	           <obj_file>
+		            <name>/home/student/group4/cs225a/catkin_ws/src/IIWA/src/graphics/root.obj</name>
+		            <position_in_parent>0.000000 0.000000 0.000000</position_in_parent>
+		            <orientation_in_parent>0 0 0 1</orientation_in_parent>
+		            <collision_type>0</collision_type>
+		            <scaling>1 1 1</scaling>
+	            </obj_file>
+            </graphics>
+        </root_link>
+        <!-- These flags can control the simulation's default behavior. -->
+        <flag_gc_damping>true</flag_gc_damping>
+        <flag_gc_limits>true</flag_gc_limits> <!-- Apply gc position limits (joint limits) -->
+        <flag_actuator_force_limits>true</flag_actuator_force_limits>
+        <flag_actuator_vel_limits>true</flag_actuator_vel_limits>
+        <flag_actuator_acc_limits>true</flag_actuator_acc_limits>
+        <flag_controller_on>true</flag_controller_on> <!-- Controller enabled at the start -->
+        <flag_logging_on>false</flag_logging_on>
+    </robot>
+
+    <graphics name="iiwaBotStdView">
+        <camera>
+            <pos>2.0   0.0   0.8</pos>
+            <lookat>0.0   0.0   0.5</lookat>
+            <up>0   0   1</up>
+            <clip>0 10</clip>
+            <background>0 0 0</background>
+        </camera>
+        <light>
+            <pos>2.0   0.0   0.0</pos>
+            <lookat>0.0   0.0   0.5</lookat>
+        </light>
+        <light>
+            <pos>-2.0   0.0   0.0</pos>
+            <lookat>0.0   0.0   0.0</lookat>
+        </light>
+        <background_color>0.0 0.0 0.0</background_color>
+    </graphics>
+
+    <controller name="iiwaGcCtrl">
+        <type>gc</type>
+        <must_use_robot>iiwaBot</must_use_robot>
+        <kp>100</kp>
+        <kv>20</kv>
+        <ka>0</ka>
+        <force_max>100</force_max>
+        <force_min>-100</force_min>
+    </controller>
+
+    <controller name="opc">
+        <type>task</type>
+        <must_use_robot>iiwaBot</must_use_robot>
+        <task name="hand">
+            <type>TaskOpPos</type>
+            <parent_link>end-effector</parent_link>
+            <pos_in_parent>0.0 0.0 0.0</pos_in_parent>
+            <priority>0</priority>
+            <task_dof>3</task_dof>
+            <kp>400</kp>
+            <kv>90</kv>
+            <ka>0</ka>
+            <force_max>200</force_max>
+            <force_min>-200</force_min>
+        </task>
+
+       <!-- -->
+        <task name="GcTask">
+            <type>TaskGc</type>
+            <priority>1</priority>
+            <task_dof>0</task_dof> 
+            <kp>100</kp>
+            <kv>40</kv>
+            <ka>0</ka>
+            <force_max>400</force_max>
+            <force_min>-400</force_min>
+        </task>
+
+        <!-- 0 task_dof means a gc task, ie full dofs -->
+        <task name="NullSpaceDampingTask">
+            <type>TaskNullSpaceDamping</type>
+            <priority>1</priority>
+            <task_dof>0</task_dof> 
+            <kp>0</kp>
+            <kv>40</kv>
+            <ka>0</ka>
+            <force_max>40</force_max>
+            <force_min>-40</force_min>
+        </task>
+    </controller>
+</scl>

@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+.././include/OptiTrack.h
+stdio.h
+-
+math.h
+-
+vrpn_Connection.h
+-
+vrpn_Tracker.h
+-
+iostream
+-
+
+/home/newt/workspace/cs225a/OptiTrack/src/OptiTrack.cpp
+OptiTrack.h
+/home/newt/workspace/cs225a/OptiTrack/src/OptiTrack.h
+

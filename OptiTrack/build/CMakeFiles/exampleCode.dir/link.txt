@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/exampleCode.dir/src/exampleCode.o  -o ../bin/exampleCode  -L/home/newt/workspace/cs225a/OptiTrack/lib -rdynamic ../lib/libOptiTrack.a -lvrpn -lpthread 

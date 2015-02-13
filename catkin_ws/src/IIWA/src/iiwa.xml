@@ -1,0 +1,196 @@
+<?xml version="1.0" ?>
+<!DOCTYPE LOTUS SYSTEM "scl.dtd">
+
+<scl>
+  <robot spec_name="iiwa">
+	  <link>
+		  <link_name>link_0</link_name>
+		  <position_in_parent>0.000000 0.000000 0.15576700</position_in_parent><!--O1-->
+		  <orientation_in_parent>0 0 0 1</orientation_in_parent>
+		  <mass>4.000000</mass>
+		  <inertia>0.400000 0.400000 0.400000</inertia>
+		  <inertia_gc>4.5</inertia_gc> <!-- +-.54 -->
+		  <center_of_mass>0.000000 0.000000 0.14000</center_of_mass>
+		  <joint_name>A1</joint_name>
+		  <parent_link_name>base</parent_link_name>
+		  <joint_type>rz</joint_type>
+		  <joint_limits>-2.96 2.96</joint_limits><!--+/-170 deg-->
+		  <force_gc_limits>-176 176</force_gc_limits>
+		  <stiction_gc_force>-5.5 5.5</stiction_gc_force>
+		  <stiction_gc_velocity_limits>-0.01 0.01</stiction_gc_velocity_limits>
+		  <friction_gc_kv>10</friction_gc_kv>
+		  <default_joint_position>0.000000</default_joint_position>
+		  <graphics>
+			  <obj_file>
+				  <name>/home/student/group4/cs225a/catkin_ws/src/IIWA/src/graphics/link0.obj</name>
+				  <position_in_parent>0.000000 0.000000 0.0</position_in_parent>
+				  <orientation_in_parent>0 0 0 1</orientation_in_parent>
+				  <collision_type>0</collision_type>
+				  <scaling>1 1 1</scaling>
+			  </obj_file>
+		  </graphics>
+	  </link>
+	  <link>
+		  <link_name>link_1</link_name>
+		  <position_in_parent>0 0 0.1825</position_in_parent><!--I assume the O's are aligned--><!--O2-->
+    	<orientation_in_parent>0 0 0 1</orientation_in_parent>
+		  <mass>4.000000</mass>
+		  <inertia>0.400000 0.400000 0.400000</inertia>
+		  <inertia_gc>4.5</inertia_gc> <!-- +-.54 -->
+		  <center_of_mass>0.000000 0.000000 0.14000</center_of_mass>
+		  <joint_name>A2</joint_name>
+		  <parent_link_name>link_0</parent_link_name>
+		  <joint_type>ry</joint_type>
+		  <joint_limits>-2.09 -0.1</joint_limits><!--+/-120 deg-->
+		  <force_gc_limits>-176 176</force_gc_limits>
+		  <stiction_gc_force>-5.5 5.5</stiction_gc_force>
+		  <stiction_gc_velocity_limits>-0.01 0.01</stiction_gc_velocity_limits>
+		  <friction_gc_kv>10</friction_gc_kv>
+		  <default_joint_position>0.785000</default_joint_position>
+		  <graphics>
+			  <obj_file>
+				  <name>/home/student/group4/cs225a/catkin_ws/src/IIWA/src/graphics/link1.obj</name>
+				  <position_in_parent>0.000000 0.000000 0.000000</position_in_parent>
+				  <orientation_in_parent>0 0 0 1</orientation_in_parent>
+				  <collision_type>0</collision_type>
+				  <scaling>1 1 1</scaling>
+			  </obj_file>
+		  </graphics>
+	  </link>
+	  <link>
+		  <link_name>link_2</link_name>
+		  <position_in_parent>0 0 0.1850000</position_in_parent><!--O3-->
+		  <orientation_in_parent>0 0 0 1</orientation_in_parent>
+		  <mass>4.000000</mass>
+		  <inertia>0.400000 0.400000 0.400000</inertia>
+		  <inertia_gc>2.0</inertia_gc> <!-- +-.54 -->
+		  <center_of_mass>0.000000 0.000000 0.14000</center_of_mass>
+		  <joint_name>E1</joint_name>
+		  <parent_link_name>link_1</parent_link_name>
+		  <joint_type>rz</joint_type>
+		  <joint_limits>-2.96 2.96</joint_limits><!--+/-170 deg-->
+		  <force_gc_limits>-110 110</force_gc_limits>
+		  <stiction_gc_force>-5.5 5.5</stiction_gc_force>
+		  <stiction_gc_velocity_limits>-0.01 0.01</stiction_gc_velocity_limits>
+		  <friction_gc_kv>10</friction_gc_kv>
+		  <default_joint_position>-0.000000</default_joint_position>
+		  <graphics>
+			  <obj_file>
+				  <name>/home/student/group4/cs225a/catkin_ws/src/IIWA/src/graphics/link2.obj</name>
+				  <position_in_parent>0.000000 0.000000 0.00000</position_in_parent>
+				  <orientation_in_parent>0 0 0 1 </orientation_in_parent>
+				  <collision_type>0</collision_type>
+				  <scaling>1 1 1</scaling>
+			  </obj_file>
+		  </graphics>
+	  </link>
+	  <link>
+		  <link_name>link_3</link_name>
+		  <position_in_parent>0.000000 0.000000 0.217000</position_in_parent><!--O4-->
+		  <orientation_in_parent>0 0 0 1</orientation_in_parent>
+		  <mass>4.000000</mass>
+		  <inertia>0.400000 0.400000 0.400000</inertia>
+		  <inertia_gc>2.0</inertia_gc> <!-- +-.54 -->
+		  <center_of_mass>0.000000 0.000000 0.14000</center_of_mass>
+		  <joint_name>A3</joint_name>
+		  <parent_link_name>link_2</parent_link_name>
+		  <joint_type>ry</joint_type>
+		  <joint_limits>-2.09 -0.2</joint_limits><!--+/-120 deg-->
+		  <force_gc_limits>-110 110</force_gc_limits>
+		  <stiction_gc_force>-5.5 5.5</stiction_gc_force>
+		  <stiction_gc_velocity_limits>-0.01 0.01</stiction_gc_velocity_limits>
+		  <friction_gc_kv>10</friction_gc_kv>
+		  <default_joint_position>0.785000</default_joint_position>
+		  <graphics>
+			  <obj_file>
+				  <name>/home/student/group4/cs225a/catkin_ws/src/IIWA/src/graphics/link3.obj</name>
+				  <position_in_parent>0.000000 0.000000 0.000000</position_in_parent>
+				  <orientation_in_parent>0 0 0 1</orientation_in_parent>
+				  <collision_type>0</collision_type>
+				  <scaling>1 1 1</scaling>
+			  </obj_file>
+		  </graphics>
+	  </link>
+	  <link>
+		  <link_name>link_4</link_name>
+		  <position_in_parent>0 0.0000 0.186000000</position_in_parent><!--O5-->
+		  <orientation_in_parent>0 0 0 1</orientation_in_parent>
+		  <mass>3.000000</mass>
+		  <inertia>0.300000 0.300000 0.300000</inertia>
+		  <inertia_gc>2.0</inertia_gc> <!-- +-.54 -->
+		  <center_of_mass>0.000000 0.00000 0.14000</center_of_mass>
+		  <joint_name>A4</joint_name>
+		  <parent_link_name>link_3</parent_link_name>
+		  <joint_type>rz</joint_type>
+		  <joint_limits>-2.96 2.96</joint_limits><!--+/-170 deg-->
+		  <force_gc_limits>-110 110</force_gc_limits>
+		  <stiction_gc_force>-5.5 5.5</stiction_gc_force>
+		  <stiction_gc_velocity_limits>-0.01 0.01</stiction_gc_velocity_limits>
+		  <friction_gc_kv>10</friction_gc_kv>
+		  <default_joint_position>-0.000000</default_joint_position>
+		  <graphics>
+			  <obj_file>
+				  <name>/home/student/group4/cs225a/catkin_ws/src/IIWA/src/graphics/link4.obj</name>
+				  <position_in_parent>0.000000 0.000000 0.0000</position_in_parent>
+				  <orientation_in_parent>0 0 0 1</orientation_in_parent>
+				  <collision_type>0</collision_type>
+				  <scaling>1 1 1</scaling>
+			  </obj_file>
+		  </graphics>
+	  </link>
+	  <link>
+		  <link_name>link_5</link_name>
+		  <position_in_parent>0.00000 0.0000 0.217000</position_in_parent><!--O6-->
+		  <orientation_in_parent>0 0 0 1</orientation_in_parent>
+		  <mass>2.000000</mass>
+		  <inertia>0.2 0.2 0.2</inertia>
+		  <inertia_gc>1.0</inertia_gc> <!-- +-.54 -->
+		  <center_of_mass>0.000000 0.000000 0.14000</center_of_mass>
+		  <joint_name>A5</joint_name>
+		  <parent_link_name>link_4</parent_link_name>
+		  <joint_type>ry</joint_type>
+		  <joint_limits>-2.09 -0.2</joint_limits><!--+/-120 deg-->
+		  <force_gc_limits>-40 40</force_gc_limits>
+		  <stiction_gc_force>-1.0 1.0</stiction_gc_force>
+		  <stiction_gc_velocity_limits>-0.01 0.01</stiction_gc_velocity_limits>
+		  <friction_gc_kv>10</friction_gc_kv>
+		  <default_joint_position>1.57100</default_joint_position>
+		  <graphics>
+			  <obj_file>
+				  <name>/home/student/group4/cs225a/catkin_ws/src/IIWA/src/graphics/link5.obj</name>
+				  <position_in_parent>0.000000 -0.060000 0.000000</position_in_parent>
+				  <orientation_in_parent>0 0 0 1</orientation_in_parent>
+				  <collision_type>0</collision_type>
+				  <scaling>1 1 1</scaling>
+			  </obj_file>
+		  </graphics>
+	  </link>
+	  <link>
+		  <link_name>end-effector</link_name>
+		  <position_in_parent>0.00000 0.00000 0.0810000</position_in_parent><!--O7-->
+		  <orientation_in_parent>0 0 0 1</orientation_in_parent>
+		  <mass>1.000000</mass>
+		  <inertia>0.100000 0.100000 0.100000</inertia>
+		  <inertia_gc>1.0</inertia_gc> <!-- +-.54 -->
+		  <center_of_mass>0.000000 0.000000 0.03000</center_of_mass>
+		  <joint_name>A6</joint_name>
+		  <parent_link_name>link_5</parent_link_name>
+		  <joint_type>rz</joint_type>
+		  <joint_limits>-2.95 2.95</joint_limits><!--+/-175 deg-->
+		  <force_gc_limits>-40 40</force_gc_limits>
+		  <stiction_gc_force>-1.0 1.0</stiction_gc_force>
+		  <stiction_gc_velocity_limits>-0.01 0.01</stiction_gc_velocity_limits>
+		  <friction_gc_kv>10</friction_gc_kv>
+		  <default_joint_position>0.000000</default_joint_position>
+		  <graphics>
+			  <obj_file>
+				  <name>/home/student/group4/cs225a/catkin_ws/src/IIWA/src/graphics/link6.obj</name>
+				  <position_in_parent>0.000000 0.000000 0.0</position_in_parent>
+				  <orientation_in_parent>0 0 0 1</orientation_in_parent>
+				  <collision_type>0</collision_type>
+				  <scaling>1 1 1</scaling>
+			  </obj_file>
+		  </graphics>
+	  </link>
+  </robot>
+</scl>

@@ -1,0 +1,167 @@
+// Copyright (C) 2009 International Business Machines.
+// All Rights Reserved.
+// This code is published under the Eclipse Public License.
+//
+// $Id: Trajectory_nlp.hpp 1861 2010-12-21 21:34:47Z andreasw $
+//
+// Author:  Andreas Waechter               IBM    2009-04-02
+
+// This file is part of the Ipopt tutorial.  It is a correct version
+// of a C++ implemention of the coding exercise problem (in AMPL
+// formulation):
+//
+// param n := 4;
+//
+// var x {1..n} <= 0, >= -1.5, := -0.5;
+//
+// minimize obj:
+//   sum{i in 1..n} (x[i]-1)^2;
+//
+// subject to constr {i in 2..n-1}:
+//   (x[i]^2+1.5*x[i]-i/n)*cos(x[i+1]) - x[i-1] = 0;
+//
+// The constant term "i/n" in the constraint is supposed to be input data
+//
+
+#ifndef __Trajectory_NLP_HPP__
+#define __Trajectory_NLP_HPP__
+
+#include "IpTNLP.hpp"
+
+using namespace Ipopt;
+
+// This inherits from Ipopt's TNLP
+class Trajectory_NLP : public TNLP
+{
+public:
+  /** constructor that takes in problem data */
+  Trajectory_NLP(Index N, const Number g, Number v, 
+  const Number alph, const Number beta, const Number gam);
+
+  /** default destructor */
+  virtual ~Trajectory_NLP();
+
+  virtual bool set_direction_weights(Number* A, Number* B);
+  /**@name Overloaded from TNLP */
+  //@{
+  /** Method to return some info about the nlp */
+  virtual bool get_nlp_info(Index& n, Index& m, Index& nnz_jac_g,
+                            Index& nnz_h_lag, IndexStyleEnum& index_style);
+
+  virtual bool set_x_bounds_info(Number* x_l, Number* x_u);
+
+  /** Method to return the bounds for my problem */
+  virtual bool get_bounds_info(Index n, Number* x_l, Number* x_u,
+                               Index m, Number* g_l, Number* g_u);
+
+  virtual bool set_q_info(Number* q, Number* dq);
+
+  virtual bool set_starting_point(Number* robot_pos, Number* robot_bearing, bool init_x, Number* x,
+           bool init_z, Number* z_L, Number* z_U, bool init_lambda,
+           Number* lambda);
+
+  /** Method to return the starting point for the algorithm */
+  virtual bool get_starting_point(Index n, bool init_x, Number* x,
+                                  bool init_z, Number* z_L, Number* z_U,
+                                  Index m, bool init_lambda,
+                                  Number* lambda);
+
+  /** Method to return the objective value */
+  virtual bool eval_f(Index n, const Number* x, bool new_x, Number& obj_value);
+
+  /** Method to return the gradient of the objective */
+  virtual bool eval_grad_f(Index n, const Number* x, bool new_x, Number* grad_f);
+
+  /** Method to return the constraint residuals */
+  virtual bool eval_g(Index n, const Number* x, bool new_x, Index m, Number* g);
+
+  /** Method to return:
+   *   1) The structure of the jacobian (if "values" is NULL)
+   *   2) The values of the jacobian (if "values" is not NULL)
+   */
+  virtual bool eval_jac_g(Index n, const Number* x, bool new_x,
+                          Index m, Index nele_jac, Index* iRow, Index *jCol,
+                          Number* values);
+
+  /** Method to return:
+   *   1) The structure of the hessian of the lagrangian (if "values" is NULL)
+   *   2) The values of the hessian of the lagrangian (if "values" is not NULL)
+   */
+  virtual bool eval_h(Index n, const Number* x, bool new_x,
+                      Number obj_factor, Index m, const Number* lambda,
+                      bool new_lambda, Index nele_hess, Index* iRow,
+                      Index* jCol, Number* values);
+
+  //@}
+
+  /** @name Solution Methods */
+  //@{
+  /** This method is called when the algorithm is complete so the TNLP can store/write the solution */
+  virtual void finalize_solution(SolverReturn status,
+                                 Index n, const Number* x, const Number* z_L, const Number* z_U,
+                                 Index m, const Number* g, const Number* lambda,
+                                 Number obj_value,
+				 const IpoptData* ip_data,
+				 IpoptCalculatedQuantities* ip_cq);
+  //@}
+  virtual bool get_solution(Number* x, Number* z_L, Number* z_U, Number* lambda);
+
+  virtual void print_params();
+
+private:
+  /**@name Methods to block default compiler methods.
+   * The compiler automatically generates the following three methods.
+   *  Since the default compiler implementation is generally not what
+   *  you want (for all but the most simple classes), we usually 
+   *  put the declarations of these methods in the private section
+   *  and never implement them. This prevents the compiler from
+   *  implementing an incorrect "default" behavior without us
+   *  knowing. (See Scott Meyers book, "Effective C++")
+   *  
+   */
+  //@{
+  Trajectory_NLP();
+  Trajectory_NLP(const Trajectory_NLP&);
+  Trajectory_NLP& operator=(const Trajectory_NLP&);
+  //@}
+
+  /** @name NLP data */
+  //@{
+  /** Number of variables */
+  Index N_;
+  Index m_;
+  //@}
+  Number grav_;
+  Number vel_;
+  Number* A_;
+  Number* B_;
+  Number alph_;
+  Number beta_;
+  Number gam_;
+  Number* x_l_;
+  Number* x_u_;
+  Number* g_l_;
+  Number* g_u_;
+  Number* q_;
+  Number* dq_;
+  Number* pos_;
+  Number* bearing_;
+  Number* x0_;
+  Number* z_L0_;
+  Number* z_U0_;
+  Number* lambda0_;
+
+  bool init_x_;
+  bool init_z_;
+  bool init_lambda_;
+  bool solved;
+
+  Number* x_sol_;
+  Number* z_l_sol_;
+  Number* z_u_sol_;
+  Number* lambda_sol_;
+
+};
+
+
+#endif
